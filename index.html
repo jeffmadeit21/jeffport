@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jeff Edem Bokor - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            background-color: #fff;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .sidebar img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar h2 {
+            margin: 10px 0 5px;
+        }
+        
+        .sidebar p {
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .sidebar nav a {
+            display: block;
+            padding: 8px;
+            color: #0077cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .sidebar nav a:hover {
+            background-color: #eee;
+        }
+        
+        .social-icons {
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            margin: 0 8px;
+            font-size: 18px;
+            color: #555;
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            color: #0077cc;
+        }
+        
+        .main {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        h1,
+        h2 {
+            color: #333;
+        }
+        
+        .skills span {
+            background-color: lightblue;
+            padding: 5px 10px;
+            margin: 5px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                box-shadow: none;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: #ffffff;
+            background-color: border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-desc {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: lightblue;
+            margin-bottom: 1rem;
+        }
+        
+        .service-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-desc {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-form {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .contact-info {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+            width: 25px;
+        }
+        
+        .contact-text {
+            flex: 1;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-social a {
+            color: white;
+            font-size: 1.25rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-social a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <img src="jeff.jpg" alt="Jeff's Photo" />
+            <h2>Jeff Edem Bokor</h2>
+            <p>Web Developer & Designer</p>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <a href="https://jeffmadeit21.github.io/Mysite-/" target="_blank">
+            Resume <i class="fas fa-file-alt"></i></a>
+                <p style="font-size: 0.8rem; margin-left: 10px; color: #aaa;">Click to view or download my professional resume.</p>
+            </nav>
+        </div>
+
+        <div class="main">
+            <section id="about">
+                <h1>About Me</h1>
+                <p>Hi, I'm Jeff, a passionate web developer and designer focused on building beautiful and functional digital experiences. I love working with HTML, CSS, JavaScript, and more.</p>
+                <p>My journey in web development began when I was in house taking courses online, and since then, I've worked with various clients from startups to established businesses, helping them achieve their online presence goals.</p>
+                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying outdoor activities like hiking and photography.</p>
+                <div class="skills">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Data analsyt</span>
+                    <span class="skill-tag">Graphic design</span>
+                    <span class="skill-tag">Forex trader</span>
+                </div>
+
+
+            </section>
+
+            <section id="projects" class="section">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="ecommence.jpg" alt="Project 1" class="project-img">
+                        <div class="project-info">
+                            <h3 class="project-title">E-commerce Website</h3>
+                            <p class="project-desc">A fully responsive e-commerce platform with shopping cart and payment integration.</p>
+                            <div class="project-links">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="task.jpg" alt="Project 2" class="project-img">
+                        <div class="project-info">
+                            <h3 class="project-title">Task Management App</h3>
+                            <p class="project-desc">A React-based task management application with drag-and-drop functionality.</p>
+                            <div class="project-links">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="services" class="section">
+                <h2 class="section-title">My Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="service-title">Web Development</h3>
+                        <p class="service-desc">Custom website development using modern technologies and best practices for optimal performance.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="service-title">Graphic Design</h3>
+                        <p class="service-desc">Creating intuitive designs</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Data Analytics</h3>
+                            <p>Gain insights from data and make smarter business decisions</p>
+                        </div>
+                    </div>
+            </section>
+
+            <section id="contact" class="section">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-grid">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" id="subject" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" class="form-control" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    Achimota, Accra, Ghana.
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    jeffedem02@gmail.com
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    +233 208298260
+                                </div>
+                            </div>
+                            <div class="social-icons">
+                                <a href="https://facebook.com/jeffmadeit21" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://twitter.com/jeffmadeit21" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a href="https://instagram.com/jeffmadeit21" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="https://linkedin.com/in/jeffmadeit21" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                            <footer>
+                                <div class="footer-content">
+                                    <h3>Jeff edem bokor</h3>
+                                    <p>Web Developer & Designer crafting exceptional digital experiences</p>
+                                    <div class="copyright">&copy; <span id="year">2025</span> Jeff. All Rights Reserved.
+                                    </div>
+</body>
+
+</html>
